@@ -33,13 +33,13 @@ package_deb_armhf: build_bin_armhf
 package_deb_amd64: build_bin_amd64
 	mkdir -p $(BUILD_DIR)/debian/amd64
 	cp -r debian $(BUILD_DIR)/debian/amd64/    # Copy deb package files
-	sed -i "s/__PACKAGE__/$(PACKAGE_NAME)/g" $(BUILD_DIR)/debian/amd64/debian/DEBIAN/control    # Replace __PACKAGE__ macro in control file
-	sed -i "s/__VERSION__/$(VERSION)-$(DEBIAN_REVISION)/g" $(BUILD_DIR)/debian/amd64/debian/DEBIAN/control    # Replace __VERSION__ macro in control file
-	sed -i "s/__ARCHITECTURE__/amd64/g" $(BUILD_DIR)/debian/amd64/debian/DEBIAN/control    # Replace __ARCHITECTURE__ macro in control file
-	sed -i "s/__MAINTAINER__/$(MAINTAINER)/g" $(BUILD_DIR)/debian/amd64/debian/DEBIAN/control    # Replace __MAINTAINER__ macro in control file
+	sed -i "s|__PACKAGE__|$(PACKAGE_NAME)|g" $(BUILD_DIR)/debian/amd64/debian/DEBIAN/control    # Replace __PACKAGE__ macro in control file
+	sed -i "s|__VERSION__|$(VERSION)-$(DEBIAN_REVISION)|g" $(BUILD_DIR)/debian/amd64/debian/DEBIAN/control    # Replace __VERSION__ macro in control file
+	sed -i "s|__ARCHITECTURE__|amd64|g" $(BUILD_DIR)/debian/amd64/debian/DEBIAN/control    # Replace __ARCHITECTURE__ macro in control file
+	sed -i "s|__MAINTAINER__|$(MAINTAINER)|g" $(BUILD_DIR)/debian/amd64/debian/DEBIAN/control    # Replace __MAINTAINER__ macro in control file
 	sed -i "s|__HOMEPAGE__|$(SOURCE_URL)|g" $(BUILD_DIR)/debian/amd64/debian/DEBIAN/control    # Replace __HOMEPAGE__ macro in control file
-	sed -i "s/__PACKAGE__/$(PACKAGE_NAME)/g" $(BUILD_DIR)/debian/amd64/debian/usr/share/doc/$(PACKAGE_NAME)/copyright    # Replace __PACKAGE__ macro in copyright file
-	sed -i "s/__MAINTAINER__/$(MAINTAINER)/g" $(BUILD_DIR)/debian/amd64/debian/usr/share/doc/$(PACKAGE_NAME)/copyright    # Replace __MAINTAINER__ macro in copyright file
+	sed -i "s|__PACKAGE__|$(PACKAGE_NAME)|g" $(BUILD_DIR)/debian/amd64/debian/usr/share/doc/$(PACKAGE_NAME)/copyright    # Replace __PACKAGE__ macro in copyright file
+	sed -i "s|__MAINTAINER__|$(MAINTAINER)|g" $(BUILD_DIR)/debian/amd64/debian/usr/share/doc/$(PACKAGE_NAME)/copyright    # Replace __MAINTAINER__ macro in copyright file
 	sed -i "s|__SOURCE__|$(SOURCE_URL)|g" $(BUILD_DIR)/debian/amd64/debian/usr/share/doc/$(PACKAGE_NAME)/copyright    # Replace __SOURCE__ macro in copyright file
 	cp $(BUILD_DIR)/bin/amd64/yggdrasil $(BUILD_DIR)/debian/amd64/debian/usr/bin/    # Copy binary
 	chmod +x $(BUILD_DIR)/debian/amd64/debian/usr/bin/yggdrasil    # Make executable (not sure why it lost execution perm after copy)

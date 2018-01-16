@@ -2,7 +2,7 @@
 # Build mesh-orange system image for each board
 #
 
-TAG = confd    # master is broken at the moment
+TAG = master
 BUILD_DIR = /tmp/mesh-orange
 OUTPUT_DIR = /vagrant/output/mesh-orange-images
 

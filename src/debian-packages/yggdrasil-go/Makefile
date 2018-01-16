@@ -10,6 +10,7 @@ SOURCE_URL = https://github.com/Arceliar/yggdrasil-go
 
 TAG = master
 BUILD_DIR = /tmp/$(PACKAGE_NAME)
+OUTPUT_DIR = /vagrant/output/debian-packages
 
 package_deb: package_deb_armhf package_deb_amd64
 
@@ -28,7 +29,7 @@ package_deb_armhf: build_bin_armhf
 	chmod +x $(BUILD_DIR)/debian/armhf/debian/usr/bin/yggdrasil    # Make executable (not sure why it lost execution perm after copy)
 	cd $(BUILD_DIR)/debian/armhf; \
 	  dpkg-deb --build debian; \
-	  cp debian.deb /vagrant/output/$(PACKAGE_NAME)_$(VERSION)-$(DEBIAN_REVISION)_armhf.deb
+	  cp debian.deb $(OUTPUT_DIR)/$(PACKAGE_NAME)_$(VERSION)-$(DEBIAN_REVISION)_armhf.deb
 
 package_deb_amd64: build_bin_amd64
 	mkdir -p $(BUILD_DIR)/debian/amd64
@@ -45,7 +46,7 @@ package_deb_amd64: build_bin_amd64
 	chmod +x $(BUILD_DIR)/debian/amd64/debian/usr/bin/yggdrasil    # Make executable (not sure why it lost execution perm after copy)
 	cd $(BUILD_DIR)/debian/amd64; \
 	  dpkg-deb --build debian; \
-	  cp debian.deb /vagrant/output/$(PACKAGE_NAME)_$(VERSION)-$(DEBIAN_REVISION)_amd64.deb
+	  cp debian.deb $(OUTPUT_DIR)/$(PACKAGE_NAME)_$(VERSION)-$(DEBIAN_REVISION)_amd64.deb
 
 build_bin_armhf: download_source
 	mkdir -p  $(BUILD_DIR)/bin/armhf
@@ -67,4 +68,4 @@ download_source: mkdir_build
 mkdir_build:
 	rm -rf $(BUILD_DIR)
 	mkdir -p $(BUILD_DIR)
-	
+	mkdir -p $(OUTPUT_DIR)	

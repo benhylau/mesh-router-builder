@@ -31,8 +31,8 @@ ssh-ing to your Vagrant machine to enable the other boards you want.
 Status
 ------
 
-    * cjdns .deb packages are not being generated
-    * mesh-orange images do not have the mesh router .deb pre-installed
+* cjdns .deb packages are not being generated
+* mesh-orange images do not have the mesh router .deb pre-installed
 
 Usage
 -----

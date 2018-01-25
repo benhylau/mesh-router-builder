@@ -1,0 +1,51 @@
+[General]
+bootstrap=Stretch Local
+aptsources=Stretch Local
+configscript=multistrap.configscript
+
+# this is only necessary for Local sourced packages but the config has to be global
+# TODO sign local packages
+noauth=true
+
+cleanup=true
+
+[Local]
+source=http://localhost debian/
+omitdebsrc=true
+
+# mesh router
+# TODO get selected mesh router from node-profiles
+packages= yggdrasil-go
+
+[Stretch]
+source=http://httpredir.debian.org/debian
+suite=stretch
+omitdebsrc=true
+keyring=debian-archive-keyring
+components=main contrib non-free
+
+# Base system needs these three packages
+packages= systemd udev kmod
+
+# allow scripts to read .init style files
+packages= confget
+
+# package management
+packages= apt
+
+# network configuration tools
+packages= iproute2
+
+# allow us to reach the rest of the world
+packages= openssh-client
+
+# allow the rest of the world to reach us
+packages= dropbear-run
+
+# wireless management
+packages= iw hostapd crda
+
+# local-net only network management
+packages= mactelnet-server
+
+# libreadline7 ? gets /etc/inputrc, which should make ctrl-arrows work

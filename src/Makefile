@@ -1,9 +1,12 @@
 #
-# Build all artifacts packaged by each subdirectory
+# Build all artifacts from each subdirectory
 #
 
-SUBDIRS += debian-packages/
-SUBDIRS += mesh-orange-images/
+PACKAGES_DIR = debian-packages
+IMAGES_DIR = mesh-orange-images
 
-build_all:
-	$(foreach dir,$(SUBDIRS),$(MAKE) -C $(dir);)
+build_images: build_packages
+	$(MAKE) -C $(IMAGES_DIR)
+
+build_packages:
+	$(MAKE) -C $(PACKAGES_DIR)

@@ -32,7 +32,6 @@ Status
 ------
 
 * cjdns .deb packages are not being generated
-* mesh-orange images do not have the mesh router .deb pre-installed
 
 Usage
 -----

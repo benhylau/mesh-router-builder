@@ -20,8 +20,9 @@ build_images: download_source
 
 download_source: mkdir_build
 	git clone https://github.com/tomeshnet/mesh-orange.git -b $(TAG) $(BUILD_DIR)
+	cp -r mesh-orange/* $(BUILD_DIR)
 
 mkdir_build:
-	rm -rf $(BUILD_DIR)
+	sudo rm -rf $(BUILD_DIR)
 	mkdir -p $(BUILD_DIR)
 	mkdir -p $(OUTPUT_DIR)

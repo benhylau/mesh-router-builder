@@ -1,6 +1,6 @@
 [General]
 bootstrap=Stretch Local
-aptsources=Stretch Local
+aptsources=Stretch
 configscript=multistrap.configscript
 
 # this is only necessary for Local sourced packages but the config has to be global

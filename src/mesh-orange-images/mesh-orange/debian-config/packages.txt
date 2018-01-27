@@ -2,5 +2,9 @@
 # Any extra debian packages needed for the mesh build can be specified in this
 # file.
 
+# network diagnostic tools
 iputils-ping
 iperf3
+
+# common ssl certificates
+ca-certificates

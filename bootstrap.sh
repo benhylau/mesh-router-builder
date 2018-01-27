@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Install standard tools
-apt install -y build-essential git apache2 vim
+apt install -y apt-transport-https build-essential git apache2 vim
 
 # Install golang
 mkdir /tmp/golang

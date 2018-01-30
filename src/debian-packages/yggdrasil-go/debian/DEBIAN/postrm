@@ -15,7 +15,7 @@ if [ "$1" = "purge" ]; then
 	fi
 
 	# Remove user configurations
-	rm -rf /etc/yggdrasil-go/conf.json
+	rm -rf /etc/yggdrasil.conf
 fi
 
 exit 0

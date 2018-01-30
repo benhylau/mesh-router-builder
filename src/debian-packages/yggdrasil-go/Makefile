@@ -27,6 +27,8 @@ package_deb_armhf: build_bin_armhf
 	sed -i "s|__SOURCE__|$(SOURCE_URL)|g" $(BUILD_DIR)/debian/armhf/debian/usr/share/doc/$(PACKAGE_NAME)/copyright    # Replace __SOURCE__ macro in copyright file
 	cp $(BUILD_DIR)/bin/armhf/yggdrasil $(BUILD_DIR)/debian/armhf/debian/usr/bin/    # Copy binary
 	chmod +x $(BUILD_DIR)/debian/armhf/debian/usr/bin/yggdrasil    # Make executable (not sure why it lost execution perm after copy)
+	mkdir -p $(BUILD_DIR)/debian/armhf/debian/lib/systemd/system    # Make directories for systemd service files
+	cp $(BUILD_DIR)/src/contrib/systemd/* $(BUILD_DIR)/debian/armhf/debian/lib/systemd/system/    # Copy systemd service files
 	cd $(BUILD_DIR)/debian/armhf; \
 	  dpkg-deb --build debian; \
 	  cp debian.deb $(OUTPUT_DIR)/$(PACKAGE_NAME)_$(VERSION)-$(DEBIAN_REVISION)_armhf.deb
@@ -44,6 +46,8 @@ package_deb_amd64: build_bin_amd64
 	sed -i "s|__SOURCE__|$(SOURCE_URL)|g" $(BUILD_DIR)/debian/amd64/debian/usr/share/doc/$(PACKAGE_NAME)/copyright    # Replace __SOURCE__ macro in copyright file
 	cp $(BUILD_DIR)/bin/amd64/yggdrasil $(BUILD_DIR)/debian/amd64/debian/usr/bin/    # Copy binary
 	chmod +x $(BUILD_DIR)/debian/amd64/debian/usr/bin/yggdrasil    # Make executable (not sure why it lost execution perm after copy)
+	mkdir -p $(BUILD_DIR)/debian/amd64/debian/lib/systemd/system    # Make directories for systemd service files
+	cp $(BUILD_DIR)/src/contrib/systemd/* $(BUILD_DIR)/debian/amd64/debian/lib/systemd/system/    # Copy systemd service files
 	cd $(BUILD_DIR)/debian/amd64; \
 	  dpkg-deb --build debian; \
 	  cp debian.deb $(OUTPUT_DIR)/$(PACKAGE_NAME)_$(VERSION)-$(DEBIAN_REVISION)_amd64.deb

@@ -28,7 +28,6 @@ define package_deb_arch
 	sed -i "s|__MAINTAINER__|$(MAINTAINER)|g" $(BUILD_DIR)/debian/$(1)/debian/usr/share/doc/$(PACKAGE_NAME)/copyright    # Replace __MAINTAINER__ macro in copyright file
 	sed -i "s|__SOURCE__|$(SOURCE_URL)|g" $(BUILD_DIR)/debian/$(1)/debian/usr/share/doc/$(PACKAGE_NAME)/copyright    # Replace __SOURCE__ macro in copyright file
 	cp $(BUILD_DIR)/bin/$(1)/yggdrasil $(BUILD_DIR)/debian/$(1)/debian/usr/bin/    # Copy binary
-	chmod +x $(BUILD_DIR)/debian/$(1)/debian/usr/bin/yggdrasil    # Make executable (not sure why it lost execution perm after copy)
 	mkdir -p $(BUILD_DIR)/debian/$(1)/debian/lib/systemd/system    # Make directories for systemd service files
 	cp $(BUILD_DIR)/src/contrib/systemd/* $(BUILD_DIR)/debian/$(1)/debian/lib/systemd/system/    # Copy systemd service files
 	cd $(BUILD_DIR)/debian/$(1); \
@@ -40,14 +39,14 @@ package_deb: build_bin_amd64 build_bin_armhf
 	$(foreach arch,$(ARCHS),$(call package_deb_arch,$(arch));)
 
 build_bin_amd64: download_source
-	mkdir -p  $(BUILD_DIR)/bin/amd64
+	mkdir -p $(BUILD_DIR)/bin/amd64
 	cd $(BUILD_DIR)/src; \
 	  ./clean; \
 	  ./build; \
 	  cp yggdrasil $(BUILD_DIR)/bin/amd64/
 
 build_bin_armhf: download_source
-	mkdir -p  $(BUILD_DIR)/bin/armhf
+	mkdir -p $(BUILD_DIR)/bin/armhf
 	cd $(BUILD_DIR)/src; \
 	  ./clean; \
 	  GOARCH=arm GOARM=7 ./build; \
@@ -57,6 +56,6 @@ download_source: mkdir_build
 	git clone https://github.com/Arceliar/yggdrasil-go.git -b $(TAG) $(BUILD_DIR)/src
 
 mkdir_build:
-	rm -rf $(BUILD_DIR)
+	sudo rm -rf $(BUILD_DIR)
 	mkdir -p $(BUILD_DIR)
 	mkdir -p $(OUTPUT_DIR)	

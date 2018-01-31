@@ -1,0 +1,21 @@
+#!/bin/sh -e
+
+## from /usr/share/debhelper/autoscripts/postrm-systemd :
+
+if [ "$1" = "remove" ]; then
+	if [ -x "/usr/bin/deb-systemd-helper" ]; then
+		deb-systemd-helper mask cjdns.service >/dev/null
+	fi
+fi
+
+if [ "$1" = "purge" ]; then
+	if [ -x "/usr/bin/deb-systemd-helper" ]; then
+		deb-systemd-helper purge cjdns.service >/dev/null
+		deb-systemd-helper unmask cjdns.service >/dev/null
+	fi
+
+	# Remove user configurations
+	rm -rf /etc/cjdroute.conf
+fi
+
+exit 0

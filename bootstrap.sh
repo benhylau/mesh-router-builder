@@ -11,7 +11,6 @@ apt install -y \
   gnupg2 \
   qemu-user-static \
   software-properties-common \
-  swapspace \
   vim
 
 # Install docker-ce

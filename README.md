@@ -62,7 +62,8 @@ following information:
     GITHUB_RELEASE_VERSION=<release-version>
 
 The _GitHub API Token_ should have `public_repo` scope for public repositories
-and `repo` scope for private repositories.
+and `repo` scope for private repositories. The file should look something like
+this:
 
     GITHUB_USERNAME=benhylau
     GITHUB_REPOSITORY=mesh-router-builder

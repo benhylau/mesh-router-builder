@@ -37,3 +37,8 @@ apt-get install -y nodejs
 # Copy build scripts from Synced Folder to Vagrant machine user home
 cp -r /vagrant/src/* /home/vagrant/
 chown -R vagrant:vagrant /home/vagrant/*
+
+# Load github release publishing configurations
+set -a
+. /vagrant/.github_publish 2>/dev/null || true
+set +a

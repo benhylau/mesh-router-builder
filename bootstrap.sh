@@ -38,7 +38,15 @@ apt-get install -y nodejs
 cp -r /vagrant/src/* /home/vagrant/
 chown -R vagrant:vagrant /home/vagrant/*
 
-# Load github release publishing configurations
-set -a
-. /vagrant/.github_publish 2>/dev/null || true
-set +a
+# Copy github release publishing configurations
+if [ -f /vagrant/.github_publish ]; then
+  . /vagrant/.github_publish
+  {
+    echo ''
+    echo '# GitHub Release publishing configurations'
+    echo "export GITHUB_USERNAME=$GITHUB_USERNAME"
+    echo "export GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
+    echo "export GITHUB_TOKEN=$GITHUB_TOKEN"
+    echo "export GITHUB_RELEASE_VERSION=$GITHUB_RELEASE_VERSION"
+  } >> /etc/profile
+fi

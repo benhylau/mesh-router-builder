@@ -1,0 +1,9 @@
+Package: __PACKAGE__
+Version: __VERSION__
+Architecture: __ARCHITECTURE__
+Maintainer: __MAINTAINER__
+Section: net
+Priority: optional
+Homepage: __HOMEPAGE__
+Description: An encrypted IPv6 network using public-key cryptography for
+ address allocation and a distributed hash table for routing.

@@ -28,11 +28,6 @@ Note that only **raspberrypi2** and **sun8i-h2-plus-orangepi-zero** are enabled
 by default. Uncomment boards in `/home/vagrant/mesh-orange-images/Makefile` after
 ssh-ing to your Vagrant machine to enable the other boards you want.
 
-Status
-------
-
-* cjdns .deb packages are not being generated
-
 Usage
 -----
 

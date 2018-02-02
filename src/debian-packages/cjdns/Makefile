@@ -52,7 +52,8 @@ build_bin_armhf: mkdir_build
 	mkdir -p $(BUILD_DIR)/docker/build
 	cd $(BUILD_DIR)/docker; \
 	  sudo docker build -t cjdns-armv7hf .    # Build armv7hf docker container
-	  sudo docker run --memory 1G --oom-kill-disable -v /usr/bin/qemu-arm-static:/usr/bin/qemu-arm-static -v $(BUILD_DIR)/docker/build:/tmp/cjdns cjdns-armv7hf    # Build binary in emulated ARM docker (make sure we leave enough memory for the vagrant box and disable oom kill otherwise the compilation may hang)
+	  # Build binary in emulated ARM docker (run build on a single core and disable oom killer which may help bug where compilation hangs occasionally)
+	  sudo docker run --cpuset-cpus=0 --memory 1G --oom-kill-disable -v /usr/bin/qemu-arm-static:/usr/bin/qemu-arm-static -v $(BUILD_DIR)/docker/build:/tmp/cjdns cjdns-armv7hf    
 	cd $(BUILD_DIR)/docker/build; \
 	  cp cjdroute $(BUILD_DIR)/bin/armhf/
 

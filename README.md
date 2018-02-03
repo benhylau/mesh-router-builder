@@ -8,8 +8,8 @@ This project will create .deb packages of the following mesh routers:
 
 A debian/stretch64 Vagrant machine is used to build binaries for **armhf** and
 **amd64**, then package them into corresponding .deb packages. Other routers that
-may (or may not) fit on this list include libp2p and the GNUnet transport
-subsystem.
+may (or may not) fit on this list include _libp2p_ and the _GNUnet transport
+subsystem_.
 
 The Vagrant machine also builds Debian-based system images of
 [mesh-orange](https://github.com/tomeshnet/mesh-orange) with each mesh router
@@ -62,13 +62,14 @@ following information:
     GITHUB_RELEASE_VERSION=<release-version>
 
 The _GitHub API Token_ should have `public_repo` scope for public repositories
-and `repo` scope for private repositories. The file should look something like
-this:
+and `repo` scope for private repositories. The `GITHUB_RELEASE_VERSION` will be
+used as `debian_revision` for .deb packages, appended to filenames of .img system
+images, and used to tag the release. Your file should look something like this:
 
     GITHUB_USERNAME=benhylau
     GITHUB_REPOSITORY=mesh-router-builder
     GITHUB_TOKEN=0123456789abcdef0123456789abcdef01234567
-    GITHUB_RELEASE_VERSION=v0.1
+    GITHUB_RELEASE_VERSION=0.1
 
 After `make` completes, you can call `make publish` and all artifacts will be
 published to _Github Releases_ in your repository.

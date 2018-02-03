@@ -25,4 +25,4 @@ publish:
 	  -username ${GITHUB_USERNAME} \
 	  -repository ${GITHUB_REPOSITORY} \
 	  -token ${GITHUB_TOKEN} \
-	  ${GITHUB_RELEASE_VERSION} $(PUBLISH_DIR)
+	  "v${GITHUB_RELEASE_VERSION}" $(PUBLISH_DIR)

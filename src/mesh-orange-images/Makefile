@@ -17,6 +17,7 @@ build_images: download_source
 	$(MAKE) -C $(BUILD_DIR) build-depends
 	$(foreach board,$(BOARDS),$(MAKE) -C $(BUILD_DIR) clean; $(MAKE) -C $(BUILD_DIR)/boards/$(board) image;)
 	cp $(BUILD_DIR)/output/* $(OUTPUT_DIR)
+	if test -n "${GITHUB_RELEASE_VERSION}"; then rename "s/.img/-${GITHUB_RELEASE_VERSION}.img/" $(OUTPUT_DIR)/*.img; fi
 
 download_source: mkdir_build
 	git clone https://github.com/tomeshnet/mesh-orange.git -b $(TAG) $(BUILD_DIR)

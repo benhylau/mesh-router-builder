@@ -8,3 +8,6 @@ iperf3
 
 # common ssl certificates
 ca-certificates
+
+# text editor
+nano-tiny

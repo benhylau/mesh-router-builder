@@ -28,11 +28,6 @@ Note that only **raspberrypi2** and **sun8i-h2-plus-orangepi-zero** are enabled
 by default. Uncomment boards in `/home/vagrant/mesh-orange-images/Makefile` after
 ssh-ing to your Vagrant machine to enable the other boards you want.
 
-Status
-------
-
-* cjdns .deb packages are not being generated
-
 Usage
 -----
 
@@ -54,8 +49,32 @@ find the built artifacts in the **output** directory of your host:
 
 Then you may destroy the Vagrant machine with `vagrant destroy`.
 
+Publish to GitHub Releases
+--------------------------
+
+If you wish to publish the built artifacts to _GitHub Releases_, create a file
+named **.github_publish** in the project root before `vagrant up` with the
+following information:
+
+    GITHUB_USERNAME=<username>
+    GITHUB_REPOSITORY=<repository-name>
+    GITHUB_TOKEN=<github-api-token>
+    GITHUB_RELEASE_VERSION=<release-version>
+
+The _GitHub API Token_ should have `public_repo` scope for public repositories
+and `repo` scope for private repositories. The file should look something like
+this:
+
+    GITHUB_USERNAME=benhylau
+    GITHUB_REPOSITORY=mesh-router-builder
+    GITHUB_TOKEN=0123456789abcdef0123456789abcdef01234567
+    GITHUB_RELEASE_VERSION=v0.1
+
+After `make` completes, you can call `make publish` and all artifacts will be
+published to _Github Releases_ in your repository.
+
 macOS High Sierra
-------------------
+-----------------
 
 There is a known bug in macOS High Sierra that prevents Synced Folders from
 working. You will have to get the built artifacts manually before destroying the

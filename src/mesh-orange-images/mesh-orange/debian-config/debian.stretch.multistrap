@@ -15,7 +15,7 @@ omitdebsrc=true
 
 # mesh router
 # TODO get selected mesh router from node-profiles
-packages= yggdrasil-go
+packages= cjdns yggdrasil-go
 
 [Docker]
 # TODO add keyring

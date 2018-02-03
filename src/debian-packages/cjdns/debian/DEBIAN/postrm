@@ -4,18 +4,18 @@
 
 if [ "$1" = "remove" ]; then
 	if [ -x "/usr/bin/deb-systemd-helper" ]; then
-		deb-systemd-helper mask yggdrasil.service >/dev/null
+		deb-systemd-helper mask cjdns.service >/dev/null
 	fi
 fi
 
 if [ "$1" = "purge" ]; then
 	if [ -x "/usr/bin/deb-systemd-helper" ]; then
-		deb-systemd-helper purge yggdrasil.service >/dev/null
-		deb-systemd-helper unmask yggdrasil.service >/dev/null
+		deb-systemd-helper purge cjdns.service >/dev/null
+		deb-systemd-helper unmask cjdns.service >/dev/null
 	fi
 
 	# Remove user configurations
-	rm -rf /etc/yggdrasil.conf
+	rm -rf /etc/cjdroute.conf
 fi
 
 exit 0

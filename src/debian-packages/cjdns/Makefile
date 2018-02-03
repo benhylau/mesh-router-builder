@@ -45,16 +45,11 @@ build_bin_amd64: download_source
 	  ./do; \
 	  cp cjdroute $(BUILD_DIR)/bin/amd64/
 
-build_bin_armhf: mkdir_build
+build_bin_armhf: download_source
 	mkdir -p $(BUILD_DIR)/bin/armhf
-	cp -r docker $(BUILD_DIR)/
-	sed -i "s|__TAG__|$(TAG)|g" $(BUILD_DIR)/docker/Dockerfile    # Replace __TAG__ macro in Dockerfile
-	mkdir -p $(BUILD_DIR)/docker/build
-	cd $(BUILD_DIR)/docker; \
-	  sudo docker build -t cjdns-armv7hf .    # Build armv7hf docker container
-	  # Build binary in emulated ARM docker (run build on a single core and disable oom killer which may help bug where compilation hangs occasionally)
-	  sudo docker run --cpuset-cpus=0 --memory 1G --oom-kill-disable -v /usr/bin/qemu-arm-static:/usr/bin/qemu-arm-static -v $(BUILD_DIR)/docker/build:/tmp/cjdns cjdns-armv7hf    
-	cd $(BUILD_DIR)/docker/build; \
+	cd $(BUILD_DIR)/src; \
+	  ./clean; \
+	  CROSS_COMPILE=arm-linux-gnueabihf- ./cross-do; \
 	  cp cjdroute $(BUILD_DIR)/bin/armhf/
 
 download_source: mkdir_build

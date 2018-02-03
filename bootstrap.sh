@@ -7,17 +7,9 @@ apt install -y \
   build-essential \
   ca-certificates \
   curl \
+  gcc-arm-linux-gnueabihf \
   git \
-  gnupg2 \
-  qemu-user-static \
-  software-properties-common \
   vim
-
-# Install docker-ce
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable"
-apt-get update
-apt-get install -y docker-ce
 
 # Install golang
 mkdir /tmp/golang

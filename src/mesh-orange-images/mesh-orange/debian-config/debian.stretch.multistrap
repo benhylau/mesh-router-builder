@@ -1,5 +1,5 @@
 [General]
-bootstrap=Stretch Local
+bootstrap=Stretch Docker Local
 aptsources=Stretch
 configscript=multistrap.configscript
 
@@ -16,6 +16,15 @@ omitdebsrc=true
 # mesh router
 # TODO get selected mesh router from node-profiles
 packages= cjdns yggdrasil-go
+
+[Docker]
+# TODO add keyring
+source=https://download.docker.com/linux/debian
+suite=stretch
+omitdebsrc=true
+components=stable
+
+packages= docker-ce
 
 [Stretch]
 source=http://httpredir.debian.org/debian

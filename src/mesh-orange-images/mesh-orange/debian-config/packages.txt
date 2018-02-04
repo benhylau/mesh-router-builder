@@ -2,6 +2,9 @@
 # Any extra debian packages needed for the mesh build can be specified in this
 # file.
 
+# mdns
+avahi-daemon
+
 # network diagnostic tools
 iputils-ping
 iperf3

@@ -6,6 +6,7 @@ TAG = master
 BUILD_DIR = /tmp/mesh-orange
 OUTPUT_DIR = /vagrant/output/mesh-orange-images
 
+# raspberrypi3 is automatically generated when raspberrypi2 is enabled because they share the same image
 BOARDS += raspberrypi2
 #BOARDS += sun4i-a10-cubieboard
 #BOARDS += sun7i-a20-bananapi

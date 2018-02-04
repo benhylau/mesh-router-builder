@@ -17,16 +17,18 @@ The Vagrant machine also builds Debian-based system images of
 to create mesh routers on ARM devices. The following single-board computers are
 supported by mesh-orange:
 
-    * raspberrypi2 (for both Raspberry Pi 2 and 3)
+    * raspberrypi2
+    * raspberrypi3
     * sun4i-a10-cubieboard
     * sun7i-a20-bananapi
     * sun8i-h2-plus-orangepi-zero
     * sun8i-h3-orangepi-lite
     * sun8i-v3s-licheepi-zero
 
-Note that only **raspberrypi2** and **sun8i-h2-plus-orangepi-zero** are enabled
-by default. Uncomment boards in `/home/vagrant/mesh-orange-images/Makefile` after
-ssh-ing to your Vagrant machine to enable the other boards you want.
+Note that only **raspberrypi2**, **raspberrypi3**, and
+**sun8i-h2-plus-orangepi-zero** are enabled by default. Uncomment boards in
+`/home/vagrant/mesh-orange-images/Makefile` after ssh-ing to your Vagrant machine
+to enable the other boards you want.
 
 Usage
 -----

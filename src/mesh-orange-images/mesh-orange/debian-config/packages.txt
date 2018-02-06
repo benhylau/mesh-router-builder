@@ -4,6 +4,7 @@
 
 # mdns
 avahi-daemon
+libnss-mdns
 
 # network diagnostic tools
 iputils-ping

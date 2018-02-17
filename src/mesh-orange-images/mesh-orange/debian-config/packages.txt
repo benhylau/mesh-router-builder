@@ -2,16 +2,18 @@
 # Any extra debian packages needed for the mesh build can be specified in this
 # file.
 
+# common ssl certificates
+ca-certificates
+
 # mdns
 avahi-daemon
 libnss-mdns
 
-# network diagnostic tools
-iputils-ping
+# networking tools
+curl
 iperf3
-
-# common ssl certificates
-ca-certificates
+iputils-ping
+netcat
 
 # text editor
 nano-tiny

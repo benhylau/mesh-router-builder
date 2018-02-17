@@ -22,7 +22,7 @@ packages= cjdns yggdrasil-go
 source=https://download.docker.com/linux/debian
 suite=stretch
 omitdebsrc=true
-components=stable
+components=nightly
 
 packages= docker-ce
 

@@ -39,8 +39,9 @@ this repository and run:
     $ vagrant up
     $ vagrant ssh
 
-In the Vagrant machine, call `make`. When the build completes, call `exit` and
-find the built artifacts in the **output** directory of your host:
+In the Vagrant machine, call `make` (optionally, `make PROFILE=custom-profile`).
+When the build completes, call `exit` and find the built artifacts in the
+**output** directory of your host:
 
     ./output/debian-packages/yggdrasil-go_0.1-1_amd64.deb
                              yggdrasil-go_0.1-1_armhf.deb

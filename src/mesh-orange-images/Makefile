@@ -2,6 +2,9 @@
 # Build mesh-orange system image for each board
 #
 
+# Use default node profile if PROFILE variable is not passed
+PROFILE ?= default
+
 TAG = master
 BUILD_DIR = /tmp/mesh-orange
 OUTPUT_DIR = /vagrant/output/mesh-orange-images
@@ -22,9 +25,25 @@ build_images: download_source
 
 download_source: mkdir_build
 	git clone https://github.com/tomeshnet/mesh-orange.git -b $(TAG) $(BUILD_DIR)
-	cp -r mesh-orange/* $(BUILD_DIR)
+	cp -r mesh-orange/$(PROFILE)/* $(BUILD_DIR)
 
-mkdir_build:
+mkdir_build: node_profile
 	sudo rm -rf $(BUILD_DIR)
 	mkdir -p $(BUILD_DIR)
 	mkdir -p $(OUTPUT_DIR)
+
+ifeq ($(PROFILE),default)
+
+node_profile:
+	@echo 'Building mesh-orange with the 'default' node profile...'
+	@echo 'To build with a different node profile, pass the PROFILE flag:'
+	@echo ''
+	@echo '    $$ make PROFILE=custom-profile'
+	@echo ''
+
+else
+
+node_profile:
+	@echo "Building mesh-orange with the '$(PROFILE)' node profile..."
+
+endif

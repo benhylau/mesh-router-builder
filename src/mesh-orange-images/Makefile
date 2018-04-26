@@ -20,11 +20,11 @@ BOARDS += sun8i-h2-plus-orangepi-zero
 build_images: download_source
 	$(MAKE) -C $(BUILD_DIR) build-depends
 	$(foreach board,$(BOARDS),$(MAKE) -C $(BUILD_DIR) clean; $(MAKE) -C $(BUILD_DIR)/boards/$(board) image;)
-	cp $(BUILD_DIR)/output/* $(OUTPUT_DIR)
 	if test -n "${GITHUB_RELEASE_VERSION}"; \
-	    then rename "s/.img/-${GITHUB_RELEASE_VERSION}_$(PROFILE).img/" $(OUTPUT_DIR)/*.img; \
-	    else rename "s/.img/-$(PROFILE).img/" $(OUTPUT_DIR)/*.img; \
+	    then rename "s/.img/-${GITHUB_RELEASE_VERSION}_$(PROFILE).img/" $(BUILD_DIR)/output/*.img; \
+	    else rename "s/.img/-$(PROFILE).img/" $(BUILD_DIR)/output/*.img; \
 	  fi
+	cp $(BUILD_DIR)/output/* $(OUTPUT_DIR)
 
 download_source: mkdir_build
 	git clone https://github.com/tomeshnet/mesh-orange.git -b $(TAG) $(BUILD_DIR)

@@ -3,12 +3,12 @@
 #
 
 PACKAGE_NAME = cjdns
-VERSION = 20.0
-DEBIAN_REVISION = 1
-MAINTAINER = Benedict Lau <benedict.lau@groundupworks.com>
+VERSION = 20.2
+DEBIAN_REVISION = 2
+MAINTAINER = Benedict Lau <b@deprecated.systems>
 SOURCE_URL = https://github.com/cjdelisle/cjdns
 
-TAG = cjdns-v20
+TAG = cjdns-v20.2
 ARCHS = amd64 armhf
 BUILD_DIR = /tmp/$(PACKAGE_NAME)
 OUTPUT_DIR = /vagrant/output/debian-packages
@@ -63,7 +63,7 @@ build_bin_armhf: download_source
 	  cp cjdroute $(BUILD_DIR)/bin/armhf/
 
 download_source: mkdir_build
-	git clone https://github.com/cjdelisle/cjdns.git -b $(TAG) $(BUILD_DIR)/src
+	git clone $(SOURCE_URL).git -b $(TAG) $(BUILD_DIR)/src
 
 mkdir_build:
 	sudo rm -rf $(BUILD_DIR)

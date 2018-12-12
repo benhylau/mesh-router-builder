@@ -3,10 +3,10 @@
 #
 
 PACKAGE_NAME = yggdrasil-go
-VERSION = 0.1
-DEBIAN_REVISION = 1
-MAINTAINER = Benedict Lau <benedict.lau@groundupworks.com>
-SOURCE_URL = https://github.com/Arceliar/yggdrasil-go
+VERSION = 0.3.0
+DEBIAN_REVISION = 2
+MAINTAINER = Benedict Lau <b@deprecated.systems>
+SOURCE_URL = https://github.com/yggdrasil-network/yggdrasil-go
 
 TAG = master
 ARCHS = amd64 armhf
@@ -63,7 +63,7 @@ build_bin_armhf: download_source
 	  cp yggdrasil $(BUILD_DIR)/bin/armhf/
 
 download_source: mkdir_build
-	git clone https://github.com/Arceliar/yggdrasil-go.git -b $(TAG) $(BUILD_DIR)/src
+	git clone $(SOURCE_URL).git -b $(TAG) $(BUILD_DIR)/src
 
 mkdir_build:
 	sudo rm -rf $(BUILD_DIR)

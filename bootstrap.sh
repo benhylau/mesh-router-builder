@@ -13,8 +13,8 @@ apt install -y \
 
 # Install golang
 mkdir /tmp/golang
-wget --progress=bar:force https://dl.google.com/go/go1.9.2.linux-amd64.tar.gz -P /tmp/golang
-tar -C /usr/local -xzf /tmp/golang/go1.9.2.linux-amd64.tar.gz
+wget --progress=bar:force https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz -P /tmp/golang
+tar -C /usr/local -xzf /tmp/golang/go1.11.2.linux-amd64.tar.gz
 {
   echo ''
   echo '# Add golang path'

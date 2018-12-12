@@ -22,7 +22,7 @@ tar -C /usr/local -xzf /tmp/golang/go1.11.2.linux-amd64.tar.gz
 } >> /etc/profile
 
 # Install nodejs
-curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 apt-get install -y nodejs
 
 # Copy build scripts from Synced Folder to Vagrant machine user home

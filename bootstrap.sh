@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Install standard tools
-apt install -y \
+sudo apt install -y \
   apache2 \
   apt-transport-https \
   build-essential \
@@ -14,7 +14,7 @@ apt install -y \
 # Install golang
 mkdir /tmp/golang
 wget --progress=bar:force https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz -P /tmp/golang
-tar -C /usr/local -xzf /tmp/golang/go1.11.2.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf /tmp/golang/go1.11.2.linux-amd64.tar.gz
 {
   echo ''
   echo '# Add golang path'
@@ -23,7 +23,7 @@ tar -C /usr/local -xzf /tmp/golang/go1.11.2.linux-amd64.tar.gz
 
 # Install nodejs
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-apt-get install -y nodejs
+sudo apt-get install -y nodejs
 
 # Configure for vagrant build environment
 if [ "$USER" == 'vagrant' ]; then
@@ -37,7 +37,7 @@ if [ "$USER" == 'vagrant' ]; then
     echo ''
     echo '# Set local directory for build artifacts'
     echo 'export BUILD_ARTIFACTS_DIR=/vagrant/output'
-  } >> /etc/profile
+  } | sudo tee --append /etc/profile > /dev/null
 
   # Copy github release publishing configurations
   if [ -f /vagrant/.github_publish ]; then
@@ -49,7 +49,7 @@ if [ "$USER" == 'vagrant' ]; then
       echo "export GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
       echo "export GITHUB_TOKEN=$GITHUB_TOKEN"
       echo "export GITHUB_RELEASE_VERSION=$GITHUB_RELEASE_VERSION"
-    } >> /etc/profile
+    } | sudo tee --append /etc/profile > /dev/null
   fi
 
 # Configure for travis build environment
@@ -64,14 +64,14 @@ elif [ "$USER" == 'travis' ]; then
     echo ''
     echo '# Set local directory for build artifacts'
     echo 'export BUILD_ARTIFACTS_DIR=./output'
-  } >> /etc/profile
+  } | sudo tee --append /etc/profile > /dev/null
 
   # Set github release from travis publishing configurations
   {
     echo ''
     echo '# GitHub Release publishing configurations'
     echo "export GITHUB_RELEASE_VERSION=`echo $TRAVIS_TAG | sed 's/^v//'`"
-  } >> /etc/profile
+  } | sudo tee --append /etc/profile > /dev/null
 
 # Configure for local build environment
 else
@@ -84,7 +84,7 @@ else
     echo ''
     echo '# Set local directory for build artifacts'
     echo "export BUILD_ARTIFACTS_DIR=./output"
-  } >> /etc/profile
+  } | sudo tee --append /etc/profile > /dev/null
 
   # Copy github release publishing configurations
   if [ -f .github_publish ]; then
@@ -96,7 +96,7 @@ else
       echo "export GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
       echo "export GITHUB_TOKEN=$GITHUB_TOKEN"
       echo "export GITHUB_RELEASE_VERSION=$GITHUB_RELEASE_VERSION"
-    } >> /etc/profile
+    } | sudo tee --append /etc/profile > /dev/null
   fi
 fi
 

@@ -3,9 +3,10 @@ sudo: required
 
 install:
   - ./bootstrap.sh
+before_script:
+  - source /etc/profile
 script:
   - cd $HOME
-  - sudo cat /etc/profile
   - make
 before_deploy:
   - cd $HOME

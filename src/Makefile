@@ -12,8 +12,11 @@ PUBLISH_DIR = /tmp/publish
 build_images: build_packages
 	$(MAKE) -C $(IMAGES_DIR)
 
-build_packages:
+build_packages: create_build_artifacts_dir
 	$(MAKE) -C $(PACKAGES_DIR)
+
+create_build_artifacts_dir:
+	mkdir -p ${BUILD_ARTIFACTS_DIR}
 
 publish: package
 	go get -u github.com/tcnksm/ghr

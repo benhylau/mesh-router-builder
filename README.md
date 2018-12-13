@@ -27,7 +27,7 @@ supported by mesh-orange:
 
 Note that only **raspberrypi2**, **raspberrypi3**, and
 **sun8i-h2-plus-orangepi-zero** are enabled by default. Uncomment boards in
-`/home/vagrant/mesh-orange-images/Makefile` after ssh-ing to your Vagrant machine
+`~/mesh-orange-images/Makefile` after ssh-ing to your Vagrant machine
 to enable the other boards you want.
 
 Usage

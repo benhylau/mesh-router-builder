@@ -7,7 +7,7 @@ PROFILE ?= default
 
 TAG = master
 BUILD_DIR = /tmp/mesh-orange
-OUTPUT_DIR = /vagrant/output/mesh-orange-images
+OUTPUT_DIR = ${BUILD_ARTIFACTS_DIR}/mesh-orange-images
 
 # raspberrypi3 is automatically generated when raspberrypi2 is enabled because they share the same image
 BOARDS += raspberrypi2

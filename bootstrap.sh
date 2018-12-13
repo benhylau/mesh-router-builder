@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Install standard tools
+sudo apt update
 sudo apt install -y \
   apache2 \
   apt-transport-https \
@@ -19,7 +20,7 @@ sudo tar -C /usr/local -xzf /tmp/golang/go1.11.2.linux-amd64.tar.gz
   echo ''
   echo '# Add golang path'
   echo 'export PATH=$PATH:/usr/local/go/bin'
-} >> /etc/profile
+} | sudo tee --append /etc/profile > /dev/null
 
 # Install nodejs
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -

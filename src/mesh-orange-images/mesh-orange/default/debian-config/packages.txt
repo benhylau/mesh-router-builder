@@ -3,4 +3,3 @@
 # file.
 
 iputils-ping
-nano-tiny

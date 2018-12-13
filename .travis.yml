@@ -5,6 +5,7 @@ install:
   - ./bootstrap.sh
 script:
   - cd $HOME
+  - sudo cat /etc/profile
   - make
 before_deploy:
   - cd $HOME

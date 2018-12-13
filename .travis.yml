@@ -1,9 +1,14 @@
 dist: xenial
 sudo: required
 
-install: "./bootstrap.sh"
-script: "make"
-before_deploy: "make package"
+install:
+  - ./bootstrap.sh
+script:
+  - cd $HOME
+  - make
+before_deploy:
+  - cd $HOME
+  - make package
 deploy:
   - provider: releases
     api_key:

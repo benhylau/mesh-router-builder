@@ -9,6 +9,7 @@ sudo apt install -y \
   ca-certificates \
   curl \
   gcc-arm-linux-gnueabihf \
+  gcc-multilib \
   git \
   vim
 

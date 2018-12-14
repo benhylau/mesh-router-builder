@@ -29,12 +29,14 @@ sudo apt-get install -y nodejs
 
 # Configure for vagrant build environment
 if [ "$USER" == 'vagrant' ]; then
-  # Set source directory to path in synced folder
   echo 'Vagrant environment detected'
+
+  # Set source directory to path in synced folder
   echo 'Setting source directory to Synced Folder at /vagrant/src'
   SOURCE_DIR=/vagrant/src
 
   # Set local directory for build artifacts to synced folder
+  echo 'Setting local directory for build artifacts at /vagrant/output'
   {
     echo ''
     echo '# Set local directory for build artifacts'
@@ -44,6 +46,7 @@ if [ "$USER" == 'vagrant' ]; then
   # Copy github release publishing configurations
   if [ -f /vagrant/.github_publish ]; then
     . /vagrant/.github_publish
+    echo "Setting GitHub Release version to $GITHUB_RELEASE_VERSION"
     {
       echo ''
       echo '# GitHub Release publishing configurations'
@@ -56,19 +59,22 @@ if [ "$USER" == 'vagrant' ]; then
 
 # Configure for travis build environment
 elif [ "$USER" == 'travis' ]; then
-  # Set source directory to path where travis clones repository
   echo 'Travis environment detected'
+
+  # Set source directory to path where travis clones repository
   echo "Setting source directory to Travis build directory at $TRAVIS_BUILD_DIR/src"
   SOURCE_DIR=$TRAVIS_BUILD_DIR/src
 
   # Set local directory for build artifacts
+  echo "Setting local directory for build artifacts at $HOME/output"
   {
     echo ''
     echo '# Set local directory for build artifacts'
-    echo 'export BUILD_ARTIFACTS_DIR=./output'
+    echo "export BUILD_ARTIFACTS_DIR=$HOME/output"
   } | sudo tee --append /etc/profile > /dev/null
 
   # Set github release from travis publishing configurations
+  echo "Setting GitHub Release version to `$TRAVIS_TAG | sed 's/^v//'`"
   {
     echo ''
     echo '# GitHub Release publishing configurations'
@@ -78,19 +84,21 @@ elif [ "$USER" == 'travis' ]; then
 # Configure for local build environment
 else
   # Set source directory to local path relative to this script
-  echo "Setting source directory to local directory at ./src"
-  SOURCE_DIR=./src
+  echo "Setting source directory to local directory at `cd "$(dirname "${BASH_SOURCE[0]}")" && pwd`/src"
+  SOURCE_DIR=`cd "$(dirname "${BASH_SOURCE[0]}")" && pwd`/src
 
   # Set local directory for build artifacts
+  echo "Setting local directory for build artifacts at `pwd`/output"
   {
     echo ''
     echo '# Set local directory for build artifacts'
-    echo "export BUILD_ARTIFACTS_DIR=./output"
+    echo "export BUILD_ARTIFACTS_DIR=`pwd`/output"
   } | sudo tee --append /etc/profile > /dev/null
 
   # Copy github release publishing configurations
   if [ -f .github_publish ]; then
     . .github_publish
+    echo "Setting GitHub Release version to $GITHUB_RELEASE_VERSION"
     {
       echo ''
       echo '# GitHub Release publishing configurations'

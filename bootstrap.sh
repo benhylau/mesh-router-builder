@@ -98,22 +98,22 @@ elif [ "$USER" == 'travis' ]; then
 
   # Install tools required in travis environment
   # Some of these are required to make cjdns armhf cross-compile work on travis, not sure which
-  sudo apt install -y \
-    binutils-arm-linux-gnueabihf \
-    cpp-5-arm-linux-gnueabihf \
-    cpp-arm-linux-gnueabihf \
-    gcc-5-arm-linux-gnueabihf-base \
-    gcc-5-cross-base \
-    libasan2-armhf-cross \
-    libatomic1-armhf-cross \
-    libc6-armhf-cross \
-    libc6-dev-armhf-cross \
-    libgcc-5-dev-armhf-cross \
-    libgcc1-armhf-cross \
-    libgomp1-armhf-cross \
-    libstdc++6-armhf-cross \
-    libubsan0-armhf-cross \
-    linux-libc-dev-armhf-cross
+  sudo apt install -y libc6-dev-armhf-cross
+    #binutils-arm-linux-gnueabihf \
+    #cpp-5-arm-linux-gnueabihf \
+    #cpp-arm-linux-gnueabihf \
+    #gcc-5-arm-linux-gnueabihf-base \
+    #gcc-5-cross-base \
+    #libasan2-armhf-cross \
+    #libatomic1-armhf-cross \
+    #libc6-armhf-cross \
+    #libc6-dev-armhf-cross \
+    #libgcc-5-dev-armhf-cross \
+    #libgcc1-armhf-cross \
+    #libgomp1-armhf-cross \
+    #libstdc++6-armhf-cross \
+    #libubsan0-armhf-cross \
+    #linux-libc-dev-armhf-cross
 
 # Configure for local build environment
 else

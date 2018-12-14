@@ -97,8 +97,23 @@ elif [ "$USER" == 'travis' ]; then
   } | sudo tee --append /etc/profile > /dev/null
 
   # Install tools required in travis environment
-  sudo apt install -y binutils libc6-dev-i386
-  #sudo apt install -y binutils-arm-linux-gnueabihf cpp-5-arm-linux-gnueabihf cpp-arm-linux-gnueabihf gcc-5-arm-linux-gnueabihf-base gcc-5-cross-base libasan2-armhf-cross libatomic1-armhf-cross libc6-armhf-cross libc6-dev-armhf-cross libgcc-5-dev-armhf-cross libgcc1-armhf-cross libgomp1-armhf-cross libstdc++6-armhf-cross libubsan0-armhf-cross linux-libc-dev-armhf-cross
+  # Some of these are required to make cjdns armhf cross-compile work on travis, not sure which
+  sudo apt install -y \
+    binutils-arm-linux-gnueabihf \
+    cpp-5-arm-linux-gnueabihf \
+    cpp-arm-linux-gnueabihf \
+    gcc-5-arm-linux-gnueabihf-base \
+    gcc-5-cross-base \
+    libasan2-armhf-cross \
+    libatomic1-armhf-cross \
+    libc6-armhf-cross \
+    libc6-dev-armhf-cross \
+    libgcc-5-dev-armhf-cross \
+    libgcc1-armhf-cross \
+    libgomp1-armhf-cross \
+    libstdc++6-armhf-cross \
+    libubsan0-armhf-cross \
+    linux-libc-dev-armhf-cross
 
 # Configure for local build environment
 else

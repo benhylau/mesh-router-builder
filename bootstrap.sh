@@ -9,9 +9,11 @@ sudo apt install -y \
   ca-certificates \
   curl \
   gcc-arm-linux-gnueabihf \
-  gcc-5-multilib-arm-linux-gnueabihf \
   git \
   vim
+
+# Install tools required for Travis
+sudo apt install -y libc6-dev-i386
 
 # Install golang
 mkdir /tmp/golang

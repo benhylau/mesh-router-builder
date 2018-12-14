@@ -11,7 +11,7 @@ SOURCE_URL = https://github.com/cjdelisle/cjdns
 TAG = cjdns-v20.2
 ARCHS = amd64 armhf
 BUILD_DIR = /tmp/$(PACKAGE_NAME)
-OUTPUT_DIR = /vagrant/output/debian-packages
+OUTPUT_DIR = ${BUILD_ARTIFACTS_DIR}/debian-packages
 
 # Package deb for a particular architecture
 #

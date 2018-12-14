@@ -1,0 +1,23 @@
+dist: xenial
+sudo: required
+
+install:
+  - ./bootstrap.sh
+before_script:
+  - source /etc/profile
+script:
+  - cd $HOME
+  - make
+before_deploy:
+  - cd $HOME
+  - make package
+deploy:
+  - provider: releases
+    api_key:
+      secure: QhoV/L0862+DUInpkcaV8f1g8sWfzA0Md6hg4PX+SFMWntwxRIlrSAmilAGyU300WQn4euWMv2CW5R+hjGKbVBFED8vCJVFu4EZtfH4L+fpx58AjFFQkcQ/kgpjFMf2vSTS9VIvz7JGfUB3XodpSmBJvdH89MHx7q6VQXAVHGBUusw9p9PdXCZG27eT9/aNcVxRoqlWqrf9LmBSh+MBUCHdUCoLOwyZ9YLQ6/nTYsQsJlYEYbD9pseWHtHWQZdxYiNStkLhdEnF82RXYcDM3rOaSEHZt67Ae7O95UgXdfpsnRAqIL2+lmgHIQ7Mva+9l8yjxs9yiomnGqmocn8Y1/Woa5KrtiqlV7QRs4NM1k7cy39h+EL4DQ2TSNKTqQbcIg9mFn+qtyB7024KeAXJ+ejN3blESI5AqnXiHtaMhLmED+HBXAsQZ3Go5eLFyWD2Lx3lcZcTTDjSVqx4qk5Wh8gKyOS6WKpDOPPAoa2zBaaE63fZ/wqKuW57ARACnfZLs75We2deGbv16COaM6rq9rwa29VhBqGvtpB7SPi8H5K8mRqjDNYUJC33/J9+CqLOvYbs4KV3+HUT3tWSi1TpDIcQ0UmzJOAv2W96xN/mTn+t5RYV7kIydzULEKlkdGltEB8PC4G6yUa2FNvJwRVSl1e3ClSAhW22Fy7MzbASU6YI=
+    file_glob: true
+    file: /tmp/publish/*
+    skip_cleanup: true
+    on:
+      repo: benhylau/mesh-router-builder
+      tags: true

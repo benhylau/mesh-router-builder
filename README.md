@@ -18,7 +18,7 @@ to create mesh routers on ARM devices. The following single-board computers are
 supported by mesh-orange:
 
     * raspberrypi2
-    * raspberrypi3
+    * raspberrypi3 (for 3b and 3b+)
     * sun4i-a10-cubieboard
     * sun7i-a20-bananapi
     * sun8i-h2-plus-orangepi-zero
@@ -27,21 +27,32 @@ supported by mesh-orange:
 
 Note that only **raspberrypi2**, **raspberrypi3**, and
 **sun8i-h2-plus-orangepi-zero** are enabled by default. Uncomment boards in
-`/home/vagrant/mesh-orange-images/Makefile` after ssh-ing to your Vagrant machine
+`~/mesh-orange-images/Makefile` after ssh-ing to your Vagrant machine
 to enable the other boards you want.
 
 Usage
 -----
 
-Ensure you have [Vagrant](https://www.vagrantup.com) installed, then clone
-this repository and run:
+You can use this builder in three environments:
 
-    $ vagrant up
-    $ vagrant ssh
+| OS       | Self-managed VM | Vagrant-managed VM                                                   | Travis CI |
+|:---------|:---------------:|:--------------------------------------------------------------------:|:---------:|
+|**Debian**| `stretch`       | [debian/stretch64](https://app.vagrantup.com/debian/boxes/stretch64) |           |
+|**Ubuntu**| `xenial`        | [ubuntu/xenial64](https://app.vagrantup.com/ubuntu/boxes/xenial64)   | [![Build Status](https://travis-ci.org/benhylau/mesh-router-builder.svg?branch=master)](https://travis-ci.org/benhylau/mesh-router-builder) [![GitHub release](https://img.shields.io/github/release/benhylau/mesh-router-builder.svg)](https://github.com/benhylau/mesh-router-builder/releases) |
 
-In the Vagrant machine, call `make` (optionally, `make PROFILE=custom-profile`).
-When the build completes, call `exit` and find the built artifacts in the
-**output** directory of your host:
+### Self-managed VM
+
+It is highly recommended that you spin up a fresh **Debian Stretch** or **Ubuntu Xenial**
+VM to use this builder. Using a non-root user with `sudo`, from its `$HOME` directory,
+run the following commands:
+
+    $ git clone https://github.com/benhylau/mesh-router-builder.git
+    $ ./bootstrap.sh
+    $ source /etc/profile
+    $ cd $HOME
+    $ make (optionally, make PROFILE=custom-profile)
+
+You will find built artifacts in the `~/mesh-router-builder/output` directory:
 
     ./output/debian-packages/yggdrasil-go_0.1-1_amd64.deb
                              yggdrasil-go_0.1-1_armhf.deb
@@ -50,14 +61,46 @@ When the build completes, call `exit` and find the built artifacts in the
                                 sun8i-h2-plus-orangepi-zero.img
                                 ...
 
+### Vagrant-managed VM
+
+This is the recommended way to use this builder. Ensure you have
+[Vagrant](https://www.vagrantup.com) installed, then clone this repository and run:
+
+    $ vagrant up
+    $ vagrant ssh
+
+In the Vagrant machine, call `make` (optionally, `make PROFILE=custom-profile`).
+When the build completes, call `exit` and find the built artifacts in the
+**output** directory of your host.
+
 Then you may destroy the Vagrant machine with `vagrant destroy`.
+
+#### macOS High Sierra
+
+There is a known bug in macOS High Sierra that prevents Synced Folders from
+working. You will have to get the built artifacts manually before destroying the
+Vagrant machine:
+
+    $ vagrant ssh-config > vagrant-ssh.conf
+    $ mkdir output-macos
+    $ scp -r -F vagrant-ssh.conf mesh-router-builder:/vagrant/output/* output-macos/
+
+### Travis CI
+
+This repository auto-builds in a Ubuntu Xenial environment using Travis CI. See
+[.travis.yml](https://github.com/benhylau/mesh-router-builder/blob/travis/.travis.yml)
+for details.
 
 Publish to GitHub Releases
 --------------------------
 
-If you wish to publish the built artifacts to _GitHub Releases_, create a file
-named **.github_publish** in the project root before `vagrant up` with the
-following information:
+Travis CI is configured to publish official artifacts to
+[GitHub Releases](https://github.com/benhylau/mesh-router-builder/releases) on each
+release tag.
+
+If you wish to manually publish to GitHub Releases of a forked repository, create a file
+named **.github_publish** in the project root before `vagrant up` with the following
+information:
 
     GITHUB_USERNAME=<username>
     GITHUB_REPOSITORY=<repository-name>
@@ -75,15 +118,5 @@ images, and used to tag the release. Your file should look something like this:
     GITHUB_RELEASE_VERSION=0.1
 
 After `make` completes, you can call `make publish` and all artifacts will be
-published to _Github Releases_ in your repository.
+published to Github Releases in your repository.
 
-macOS High Sierra
------------------
-
-There is a known bug in macOS High Sierra that prevents Synced Folders from
-working. You will have to get the built artifacts manually before destroying the
-Vagrant machine:
-
-    $ vagrant ssh-config > vagrant-ssh.conf
-    $ mkdir output-macos
-    $ scp -r -F vagrant-ssh.conf mesh-router-builder:/vagrant/output/* output-macos/

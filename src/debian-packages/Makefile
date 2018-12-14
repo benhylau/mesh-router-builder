@@ -6,7 +6,7 @@ SUBDIRS += cjdns/
 SUBDIRS += yggdrasil-go/
 
 BUILD_DIR = /tmp/debian-repo
-DEB_PACKAGES_DIR = /vagrant/output/debian-packages
+DEB_PACKAGES_DIR = ${BUILD_ARTIFACTS_DIR}/debian-packages
 
 localhost_deb: package_deb
 	rm -rf $(BUILD_DIR)

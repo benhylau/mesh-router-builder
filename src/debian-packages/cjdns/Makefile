@@ -59,7 +59,7 @@ build_bin_armhf: download_source
 	mkdir -p $(BUILD_DIR)/bin/armhf
 	cd $(BUILD_DIR)/src; \
 	  ./clean; \
-	  CROSS_COMPILE=arm-linux-gnueabihf- ./cross-do; \
+	  NO_TEST=1 CROSS_COMPILE=arm-linux-gnueabihf- ./cross-do; \
 	  cp cjdroute $(BUILD_DIR)/bin/armhf/
 
 download_source: mkdir_build

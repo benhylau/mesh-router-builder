@@ -88,7 +88,7 @@ Vagrant machine:
 ### Travis CI
 
 This repository auto-builds in a Ubuntu Xenial environment using Travis CI. See
-[.travis.yml](https://github.com/benhylau/mesh-router-builder/blob/travis/.travis.yml)
+[.travis.yml](https://github.com/benhylau/mesh-router-builder/blob/master/.travis.yml)
 for details.
 
 Publish to GitHub Releases

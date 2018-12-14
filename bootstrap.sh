@@ -12,9 +12,6 @@ sudo apt install -y \
   git \
   vim
 
-# Install tools required for Travis
-sudo apt install -y libc6-dev-i386
-
 # Install golang
 mkdir /tmp/golang
 wget --progress=bar:force https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz -P /tmp/golang
@@ -28,6 +25,22 @@ sudo tar -C /usr/local -xzf /tmp/golang/go1.11.2.linux-amd64.tar.gz
 # Install nodejs
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
+
+###################################
+# Platform specific configurations
+###################################
+
+# Install keys required for ubuntu xenial
+if [ `lsb_release -c -s` == 'xenial' ]; then
+  # See mesh-orange documentation regarding keys being installed
+  sudo apt-get -y install debian-archive-keyring
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7638D0442B90D010
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF0F382A1A7B6500
+fi
+
+###################################
+# Build environment configurations
+###################################
 
 # Configure for vagrant build environment
 if [ "$USER" == 'vagrant' ]; then
@@ -82,6 +95,9 @@ elif [ "$USER" == 'travis' ]; then
     echo '# GitHub Release publishing configurations'
     echo "export GITHUB_RELEASE_VERSION=`echo $TRAVIS_TAG | sed 's/^v//'`"
   } | sudo tee --append /etc/profile > /dev/null
+
+  # Install tools required in travis environment
+  sudo apt install -y binutils libc6-dev-i386 binutils-arm-linux-gnueabihf cpp-5-arm-linux-gnueabihf cpp-arm-linux-gnueabihf gcc-5-arm-linux-gnueabihf-base gcc-5-cross-base libasan2-armhf-cross libatomic1-armhf-cross libc6-armhf-cross libc6-dev-armhf-cross libgcc-5-dev-armhf-cross libgcc1-armhf-cross libgomp1-armhf-cross libstdc++6-armhf-cross libubsan0-armhf-cross linux-libc-dev-armhf-cross
 
 # Configure for local build environment
 else

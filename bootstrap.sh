@@ -30,12 +30,9 @@ sudo apt-get install -y nodejs
 # Platform specific configurations
 ###################################
 
-# Install keys required for ubuntu xenial
+# Install debian keys required for ubuntu xenial
 if [ `lsb_release -c -s` == 'xenial' ]; then
-  # See mesh-orange documentation regarding keys being installed
   sudo apt-get -y install debian-archive-keyring
-  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7638D0442B90D010
-  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF0F382A1A7B6500
 fi
 
 ###################################

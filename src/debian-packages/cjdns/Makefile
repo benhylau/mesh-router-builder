@@ -8,7 +8,7 @@ DEBIAN_REVISION = 2
 MAINTAINER = Benedict Lau <b@deprecated.systems>
 SOURCE_URL = https://github.com/cjdelisle/cjdns
 
-TAG = cjdns-v20.2
+TAG = cjdns-v$(VERSION)
 ARCHS = amd64 armhf
 BUILD_DIR = /tmp/$(PACKAGE_NAME)
 OUTPUT_DIR = ${BUILD_ARTIFACTS_DIR}/debian-packages

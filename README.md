@@ -4,7 +4,7 @@ Package and image builder for mesh routers
 This project will create .deb packages of the following mesh routers:
 
     * cjdns
-    * yggdrasil-go
+    * yggdrasil
 
 A debian/stretch64 Vagrant machine is used to build binaries for **armhf** and
 **amd64**, then package them into corresponding .deb packages. Other routers that
@@ -54,8 +54,8 @@ run the following commands:
 
 You will find built artifacts in the `~/mesh-router-builder/output` directory:
 
-    ./output/debian-packages/yggdrasil-go_0.1-1_amd64.deb
-                             yggdrasil-go_0.1-1_armhf.deb
+    ./output/debian-packages/yggdrasil_0.1-1_amd64.deb
+                             yggdrasil_0.1-1_armhf.deb
                              ...
              mesh-orange-images/raspberrypi2.img
                                 sun8i-h2-plus-orangepi-zero.img

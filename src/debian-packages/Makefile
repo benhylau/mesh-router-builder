@@ -3,7 +3,7 @@
 #
 
 SUBDIRS += cjdns/
-SUBDIRS += yggdrasil-go/
+SUBDIRS += yggdrasil/
 
 BUILD_DIR = /tmp/debian-repo
 DEB_PACKAGES_DIR = ${BUILD_ARTIFACTS_DIR}/debian-packages
